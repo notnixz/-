@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        body {
+            font-size: 14px;
+        }
+
+        header {
+            width: 100%;
+            height: 100vh;
+            background-color: #2b2f4b;
+            color: #fff;
+        }
+
+        header #particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        header .info-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            height: 100vh;
+        }
+
+        header .info-text h1 {
+            font-size: 5rem;
+            font-weight: 500;
+            font-family: 'Ubuntu';
+        }
+
+        header .info-text h3 {
+            font-size: 1.5rem;
+        }
+
+        header .info-text .scroll {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            color: #fff;
+            transform: translate(0, -50%);
+            transition: all 0.5s;
+        }
+
+        header .info-text .scroll:hover {
+            opacity: 0.7;
+        }
+
+        header .info-text .scroll::before {
+            position: absolute;
+            top: -16px;
+            left: -16px;
+            z-index: -1;
+            content: '';
+            width: 44px;
+            height: 44px;
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1);
+            border-radius: 100%;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            15%,
+            45% {
+                opacity: 1;
+            }
+
+            60% {
+                box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.1);
+                opacity: 0;
+            }
+        }
+
+        #about,
+        #features {
+            background-color: #2b2f4b;
+            padding: 40px;
+            text-align: center;
+        }
+
+        #about .header,
+        #features .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        #about .header h1,
+        #features .header h1 {
+            text-align: center;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        #about .header a,
+        #features .header a {
+            text-decoration: none;
+            font-size: 1.3em;
+            color: #fff;
+            border: 1px solid transparent;
+            padding: 10px 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        #about .header a:hover,
+        #features .header a:hover {
+            border-color: #fff;
+            box-shadow: none;
+        }
+
+        #about .card,
+        #features .card {
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            border-radius: 20px;
+            display: flex;
+            gap: 30px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        #about .card:hover,
+        #features .card:hover {
+            border-color: #fff;
+            box-shadow: none;
+        }
+
+        #about .card img,
+        #features .card img {
+            max-width: 200px;
+            max-height: 200px;
+        }
+
+        #about .card .info,
+        #features .card .info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        #about .card .info h1,
+        #features .card .info h1 {
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 1.7rem;
+            font-weight: bold;
+            font-family: 'Ubuntu';
+        }
+
+        #about .card .info p,
+        #features .card .info p {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.8rem;
+        }
+
+        #features .feature-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        #features .feature-cards .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            min-width: 350px;
+        }
+
+        #features .feature-cards .card .info i {
+            color: #fff;
+            font-size: 8rem;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 1.4rem;
+        }
+
+        #features .feature-cards .card .info h1 {
+            text-align: center;
+        }
+
+        #features .feature-cards .card .info p {
+            font-size: 1.1rem;
+        }
+
+        #skills {
+            background-color: #2b2f4b;
+            padding: 40px;
+            text-align: center;
+        }
+
+        #skills .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        #skills .header h1 {
+            text-align: center;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        #skills .card {
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            border-radius: 20px;
+            display: flex;
+            gap: 30px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        #skills .card:hover {
+            border-color: #fff;
+            box-shadow: none;
+        }
+
+        .skill-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .skill-name {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .skill-number {
+            color: #61dafb;
+            font-size: 1.3rem;
+        }
+
+        .skill-level {
+            background-color: #fff;
+            height: 20px;
+            border-radius: 10px;
+            width: 0;
+            transition: width 1s ease;
+            /* Animation duration */
+        }
+
+        .skill-bar:hover .skill-level {
+            width: 100%;
+            /* Make the bars fill the entire width on hover */
+        }
+
+
+
+
+
+
+        .scroll-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2b2f4b;
+            color: #fff;
+            border: 1px solid transparent;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            padding: 16px 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-top:hover {
+            border-color: #fff;
+            box-shadow: none;
+        }
+
+        @media screen and (max-width: 720px) {
+            header .info-text h1 {
+                font-size: 4rem;
+            }
+
+            #about .card,
+            #features .card {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #about .card img,
+            #features .card img {
+                max-width: 150px
+            }
+        }
+
+        #skills .card img {
+            width: 40px;
+            margin: auto;
+            display: block;
+        }
+
+        #skills .card .info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .skill-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+    <title>Portfolio | Nix</title>
+</head>
+
+<body>
+
+    <header>
+        <div id="particles"></div>
+        <div class="info-text">
+            <h1>Nix Portfolio</h1>
+            <a href="#about" class="scroll"><i class='bx bxs-down-arrow'></i></a>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="header">
+            <h1>About Me</h1>
+            <a href="#">Hire Me</a>
+        </div>
+
+        <div class="card">
+            <img src="assets/logo.png">
+            <div class="info">
+                <h1>It's Nix</h1>
+                <p></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="header">
+            <h1>Skills</h1>
+        </div>
+        <div class="card">
+            <div class="info">
+                <div class="skill-bars">
+                    <div class="skill-bar">
+                        <img src="https://media.discordapp.net/attachments/744114001608441867/1192590377161601224/8rr7TPB6NwIGnHr32piVHaMIXHnllfYtEudn1978VNmaPYYhe6Efo0BpxMafnNwEwETgUeLgAEnc2YCJgI9GQEDDj15GUxizIRMBEw4GTuARMBE4GejIABp568LGZRJgImAgaczD1gImAi0JMRMODUk5fFLMpEwETAgJO5B0wETAR6MgIGnHrysphFmQiYCBhwMveAiYCJQE9GwIBTT14WsygTARMBA07mHjARMBHoyQgYcOrJy2IWZSJgImDAydwDJgImAj0ZAQNOPXlZzKJMBEwEDDiZe8BEwESgJyNgwKknL4tZlImAiYABJ3MPmAiYCPRkBAw49eRlMYsyETARMOBk7gETAROBnoyAAaeevCxmUSYCJgIGnMw9YCJgItCTETDg1JOXxSzKRMBEwICTuQdMBEwEejICBpx68rKYRZkImAgYcDL3gImAiUBPRsCAU09eFrMoEwETAQNO5h4wETAR6MkIGHDqyctiFmUiYCJgwMncAyYCJgI9GQ..png?"
+                            alt="Web Development Icon">
+                        <div class="skill-info">
+                            <div class="skill-name">Web Development</div>
+
+                        </div>
+                        <div class="skill-level" style="width: 50%; background-color: #61dafb;"></div>
+                    </div>
+                    <div class="skill-bar">
+                        <img src="https://preview.redd.it/voqvc1bdstk61.png?auto=webp&s=c0d826236ebba5ed183776cc9c56119cbf4a8372"
+                            alt="Discord.js Icon">
+                        <div class="skill-info">
+                            <div class="skill-name">Discord.js</div>
+
+                        </div>
+                        <div class="skill-level" style="width: 40%; background-color: #7289da;"></div>
+                    </div>
+                    <div class="skill-bar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png"
+                            alt="Python Icon">
+                        <div class="skill-info">
+                            <div class="skill-name">Python</div>
+
+                        </div>
+                        <div class="skill-level" style="width: 10%; background-color: #306998;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <button class="scroll-top" onclick="scrollToTop()">
+        <i class='bx bxs-up-arrow'></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
